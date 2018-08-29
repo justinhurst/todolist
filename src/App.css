@@ -1,28 +1,13 @@
-.App {
-  text-align: center;
+header{
+  background-color:#4A4A4A;
+  padding:12px 12px;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+header h2{
+  color:#FFF;
+  font-weight:bold;
+  margin:0;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.chunk{
+  padding:12px;
+  border:solid 1px #E0E1E2;
 }
