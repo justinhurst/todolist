@@ -5,8 +5,8 @@ import './App.css';
 class App extends Component {
   state = {
     inputText : '',
-    list : ['Walk the Dog', 'Clean the kitchen', 'Get Groceries'],
-    completed : ['Get project for work completed', 'Finish coding homework for class']
+    list : ['Add some tasks using "Add ToDo" input'],
+    completed : []
   }
   handleChange = this.handleChange.bind(this);
 
@@ -34,16 +34,15 @@ class App extends Component {
   render() {
     const toDoList = this.state.list.map((item, index) => {
       return <li 
-                key={ index.toString() } 
-                id={ index }>
-                <div className="item-utilites">
-                  <button onClick={ ()=> this.markComplete(index) }><i class="fas fa-check"></i></button>
-                  <button><i class="fas fa-chevron-up"></i></button>
-                  <button><i class="fas fa-chevron-down"></i></button>
-                </div>
-                { item }
-                
-              </li>
+              key={ index.toString() } 
+              id={ index }>
+              <div className="item-utilites">
+                <button onClick={ ()=> this.markComplete(index) }><i className="fas fa-check"></i></button>
+                <button><i className="fas fa-chevron-up"></i></button>
+                <button><i className="fas fa-chevron-down"></i></button>
+              </div>
+              { item }
+            </li>
     });
     const completedList = this.state.completed.map((item, index) => {
       return <li 
@@ -51,9 +50,9 @@ class App extends Component {
                 key={ index.toString() } 
                 id={ index }>
                 <div className="item-utilites">
-                <button onClick={ ()=> this.deleteComplete(index) }><i class="far fa-trash-alt"></i></button>
-                  <button><i class="fas fa-chevron-up"></i></button>
-                  <button><i class="fas fa-chevron-down"></i></button>
+                <button onClick={ ()=> this.deleteComplete(index) }><i className="far fa-trash-alt"></i></button>
+                  <button><i className="fas fa-chevron-up"></i></button>
+                  <button><i className="fas fa-chevron-down"></i></button>
                 </div>
                 { item }
               </li>
@@ -62,7 +61,7 @@ class App extends Component {
       <div className="App">
         <header>
           <div>
-          <h2><i class="far fa-list-alt"></i> ToDo List <small>Made with React</small></h2>
+          <h2><i className="far fa-list-alt"></i> ToDo List <small>Made with React</small></h2>
           </div>
         </header>
         <div id="container">
@@ -77,6 +76,7 @@ class App extends Component {
             <ul>{toDoList}</ul>
           </div>
           <div id="completed-list" className="chunk">
+            <h3>Completed Tasks</h3>
             <ul>{completedList}</ul>
           </div>
         </div>
