@@ -5,8 +5,8 @@ import './App.css';
 class App extends Component {
   state = {
     inputText : '',
-    list : [],
-    completed : []
+    list : ['Walk the Dog', 'Clean the kitchen', 'Get Groceries'],
+    completed : ['Get project for work completed', 'Finish coding homework for class']
   }
   handleChange = this.handleChange.bind(this);
 
@@ -36,36 +36,49 @@ class App extends Component {
       return <li 
                 key={ index.toString() } 
                 id={ index }>
+                <div className="item-utilites">
+                  <button onClick={ ()=> this.markComplete(index) }><i class="fas fa-check"></i></button>
+                  <button><i class="fas fa-chevron-up"></i></button>
+                  <button><i class="fas fa-chevron-down"></i></button>
+                </div>
                 { item }
-                <button onClick={ ()=> this.markComplete(index) }>Mark Complete</button>
+                
               </li>
     });
     const completedList = this.state.completed.map((item, index) => {
       return <li 
+                className="cf"
                 key={ index.toString() } 
                 id={ index }>
+                <div className="item-utilites">
+                <button onClick={ ()=> this.deleteComplete(index) }><i class="far fa-trash-alt"></i></button>
+                  <button><i class="fas fa-chevron-up"></i></button>
+                  <button><i class="fas fa-chevron-down"></i></button>
+                </div>
                 { item }
-                <button onClick={ ()=> this.deleteComplete(index) }>Delete</button>
               </li>
     });
     return (
       <div className="App">
         <header>
-          <h2>ToDo List</h2>
+          <div>
+          <h2><i class="far fa-list-alt"></i> ToDo List <small>Made with React</small></h2>
+          </div>
         </header>
-        <div className="chunk">
-          <form onSubmit={ (e)=> this.addToDo(e)}>
-            <input type="text" placeholder="What do you need to do?" value={this.state.inputText} onChange={this.handleChange}/>
-            <input type="submit" value="Add ToDo" />
-          </form>
-        </div>
-        <div className="chunk">
-          <h3>Things To Do</h3>
-          <ul>{toDoList}</ul>
-        </div>
-        <div className="chunk">
-          <h3>Completed Things</h3>
-          <ul>{completedList}</ul>
+        <div id="container">
+          <div id="add-to-list" className="chunk">
+            <form onSubmit={ (e)=> this.addToDo(e)}>
+              <input type="text" placeholder="What do you need to do?" value={this.state.inputText} onChange={this.handleChange}/>
+              <input type="submit" value="Add ToDo" />
+            </form>
+          </div>
+          <div className="chunk">
+            <h3>Things To Do</h3>
+            <ul>{toDoList}</ul>
+          </div>
+          <div id="completed-list" className="chunk">
+            <ul>{completedList}</ul>
+          </div>
         </div>
       </div>
     );

@@ -1,13 +1,214 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700');
+
+/* 
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+Twitter: @rich_clark
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000; 
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;   
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
+
+/*
+
+*** Custom Styles
+
+*/
+*{
+  font-family: 'Nunito', sans-serif;
+  font-weight:400;
+}
+body{
+  background-color: #f2f2f2;
+  //background:url('bg.png');
+}
 header{
   background-color:#4A4A4A;
   padding:12px 12px;
 }
+header div{
+  max-width:1200px;
+  margin:0 auto;
+  padding:12px;
+}
 header h2{
   color:#FFF;
-  font-weight:bold;
-  margin:0;
+  font-weight:600;
+  font-size:24px;
+}
+header h2 small{
+  font-size:12px;
+}
+#container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:24px 0;
+}
+#add-to-list form{
+  background-color:#FFF;
+  padding:12px;
+  -webkit-box-shadow: 2px 1px 1px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius:3px;
+}
+#add-to-list input[type="text"]{
+  appearance: none;
+  border:solid 1px #E0E1E2;
+  font-size:16px;
+  padding:4px;
+  width:100%;
+  max-width:325px;
+}
+#add-to-list input[type="submit"]{
+  appearance: none;
+  border:none;
+  background-color:#0091e0;
+  color:#FFF;
+  font-size:16px;
+  padding:5px 12px;
+  margin:0 0 0 12px;
 }
 .chunk{
   padding:12px;
-  border:solid 1px #E0E1E2;
+  margin:0;
+}
+.chunk h3{
+  font-size:18px;
+  font-weight:600;
+  margin:0 0 12px 0;
+}
+.chunk ul{
+  list-style-type:none;
+}
+.chunk ul li{
+  padding: 24px;
+  background-color: #FFF;
+  border-radius: 3px;
+  margin: 0 0 12px 0;
+  -webkit-box-shadow: 2px 1px 1px rgba(0,0,0,0.5);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+.item-utilites{
+  float:left;
+  margin:0 12px 0 0;
+}
+.item-utilites button:hover{
+  background-color:#ccc;
+}
+#completed-list li{
+  opacity:.65;
 }
