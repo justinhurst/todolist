@@ -1,62 +1,82 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Task from './Task';
 import './App.css';
 
 class App extends Component {
   state = {
     inputText : '',
-    list : ['Add some tasks using "Add ToDo" input'],
-    completed : []
+    list : [
+      {id: 0, text: 'Add some more tasks to this list', time:'Mon May 28 2018 16:12:25 GMT-0500 (CDT)' }
+    ],
+    completed : [
+      {id: 0, text: 'Trash completed tasks', time:'Mon May 28 2018 16:12:25 GMT-0500 (CDT)' }
+    ]
   }
   handleChange = this.handleChange.bind(this);
-
   handleChange(e){
     this.setState({inputText : e.target.value});
   }
-  addToDo(e){
+  addTask(e){
     e.preventDefault();
-    console.log('adding item', e);
-    const updatedList = this.state.list;
-    updatedList.push(this.state.inputText);
-    this.setState({ list : updatedList, inputText : '' });
+    if(this.state.inputText){
+      const newTask = {
+        text: this.state.inputText,
+        id: this.state.list.length + 1,
+        time: new Date()
+      }
+      const updatedList = this.state.list;
+      updatedList.push(newTask);
+      this.setState({ list : updatedList, inputText : '' });
+    }
   }
-  markComplete(listIndex){
-    console.log(listIndex, 'marking this complete');
+  renderTasks(){
+    return this.state.list.map((task, index) => {
+        return (
+            <Task text={task.text}
+                key={index}
+                id={task.id}
+                time={task.time}
+                icon="fas fa-check"
+                markComplete={(id) => this.markTaskComplete(id)}
+            />
+        )
+    })
+  }
+  renderCompleteTasks(){
+    return this.state.completed.map((task, index) => {
+        return (
+            <Task text={task.text}
+                key={index}
+                id={task.id}
+                time={task.time}
+                icon="fas fa-trash"
+                markComplete={(id) => this.deleteComplete(id)}
+            />
+        )
+    })
+  }
+  markTaskComplete(id){
     const updatedList = this.state.list;
     const updatedCompletedList = this.state.completed;
-    const completedToDo = updatedList.splice(listIndex, 1);
-    updatedCompletedList.push(completedToDo);
-    this.setState({ list : updatedList, completed : updatedCompletedList });
+    for(let x = 0; x < updatedList.length; x++){
+      if(updatedList[x].id == id){
+        const completedToDo = updatedList.splice(x, 1);
+        updatedCompletedList.push(completedToDo[0]);
+        this.setState({ list : updatedList, completed : updatedCompletedList });
+      }
+    }
   }
-  deleteComplete(completedIndex){
-    console.log(completedIndex, 'deleteing from completed items');
+  deleteComplete(id){
+    console.log('delete complete');
+    const updatedCompletedList = this.state.completed;
+    for(let x = 0; x < updatedCompletedList.length; x++){
+      if(updatedCompletedList[x].id == id){
+        const completedToDo = updatedCompletedList.splice(x, 1);
+        this.setState({ completed : updatedCompletedList });
+      }
+    }
   }
   render() {
-    const toDoList = this.state.list.map((item, index) => {
-      return <li 
-              key={ index.toString() } 
-              id={ index }>
-              <div className="item-utilites">
-                <button onClick={ ()=> this.markComplete(index) }><i className="fas fa-check"></i></button>
-                <button><i className="fas fa-chevron-up"></i></button>
-                <button><i className="fas fa-chevron-down"></i></button>
-              </div>
-              { item }
-            </li>
-    });
-    const completedList = this.state.completed.map((item, index) => {
-      return <li 
-                className="cf"
-                key={ index.toString() } 
-                id={ index }>
-                <div className="item-utilites">
-                <button onClick={ ()=> this.deleteComplete(index) }><i className="far fa-trash-alt"></i></button>
-                  <button><i className="fas fa-chevron-up"></i></button>
-                  <button><i className="fas fa-chevron-down"></i></button>
-                </div>
-                { item }
-              </li>
-    });
     return (
       <div className="App">
         <header>
@@ -66,18 +86,18 @@ class App extends Component {
         </header>
         <div id="container">
           <div id="add-to-list" className="chunk">
-            <form onSubmit={ (e)=> this.addToDo(e)}>
+            <form onSubmit={ (e)=> this.addTask(e)}>
               <input type="text" placeholder="What do you need to do?" value={this.state.inputText} onChange={this.handleChange}/>
               <input type="submit" value="Add ToDo" />
             </form>
           </div>
           <div className="chunk">
             <h3>Things To Do</h3>
-            <ul>{toDoList}</ul>
+            <ul>{ this.renderTasks() }</ul>
           </div>
           <div id="completed-list" className="chunk">
             <h3>Completed Tasks</h3>
-            <ul>{completedList}</ul>
+            <ul>{ this.renderCompleteTasks() }</ul>
           </div>
         </div>
       </div>
